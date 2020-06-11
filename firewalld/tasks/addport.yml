@@ -1,0 +1,7 @@
+- name: Add port to Firewalld
+  firewalld:
+    zone: public
+    port: "{{ item }}"
+    state: enabled
+    permanent: yes
+    immediate: yes

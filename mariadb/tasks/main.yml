@@ -1,0 +1,12 @@
+---
+- 
+  name: Install MariaDB
+  include_tasks: packages.yml
+
+- 
+  name: Configure Firewalld
+  include_tasks: firewalld.yml
+
+- 
+  name: Create and Configure database
+  include_tasks: database.yml

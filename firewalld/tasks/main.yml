@@ -1,0 +1,12 @@
+---
+# tasks file for firewall
+
+- name: Install firewall
+  yum:
+    name: firewalld
+    state: installed
+- name: Start service and enable on boot
+  service:
+    name: firewalld
+    enabled: yes
+    state: started

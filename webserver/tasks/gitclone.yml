@@ -1,0 +1,15 @@
+---
+-
+    name: Install Git
+    yum:
+        name: git
+        state: latest
+
+-
+    name: Git clone
+    git:
+        repo: https://github.com/kodekloudhub/learning-app-ecommerce.git
+        clone: yes
+        update: no
+        version: 38b3e9b61ce9f0aad8732ac2910ac6a1336423b2 # hardcoding the git commit SHA to make sure the code is always the same
+        dest: /var/www/html/

@@ -1,0 +1,15 @@
+---
+- 
+    name: Install MariaDB
+    yum:
+        name: mariadb-server
+        state: installed
+
+- 
+    name: Start service and enable on boot
+    service:
+        name: mariadb
+        enabled: yes
+        state: started
+    
+    

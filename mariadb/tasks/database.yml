@@ -1,0 +1,40 @@
+---
+-
+    name: Install PyMysql dependency required by Mysql modules
+    pip:
+        name: PyMySQL
+        state: latest
+    become: yes
+
+- 
+    name: Create Database
+    mysql_db:
+        name: ecomdb
+        state: present
+    register: db_created
+
+-
+    name: Create user
+    mysql_user:
+        name: ecomuser
+        password: ecompassword
+        priv: "*.*:ALL"
+        state: present
+        host: "{{ hostvars['webserver']['ansible_default_ipv4']['address'] }}"
+
+-
+    name: Copy Database Products' script
+    copy:
+        src: db-load-script.sql
+        dest: /tmp
+    when:
+        db_created.changed
+
+-
+    name: Import DB (if created)
+    mysql_db:
+        name: ecomdb
+        state: import
+        target: /tmp/db-load-script.sql
+    when:
+        db_created.changed

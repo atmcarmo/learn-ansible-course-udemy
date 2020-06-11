@@ -1,0 +1,23 @@
+---
+-
+    name: Install packages
+    yum:
+        name:
+            - httpd
+            - php
+            - php-mysqlnd
+        state: latest
+
+- 
+    name: Start service and enable on boot
+    service:
+        name: httpd
+        enabled: yes
+        state: started
+
+- 
+    name: Set httpd_can_network_connect flag on and keep it persistent across reboots
+    seboolean:
+        name: httpd_can_network_connect
+        state: yes
+        persistent: yes

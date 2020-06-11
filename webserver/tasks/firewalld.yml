@@ -1,0 +1,8 @@
+---
+- 
+    name: Add port to firewalld
+    include_role:
+        name: firewalld
+        tasks_from: addport
+    loop:
+        - 80/tcp

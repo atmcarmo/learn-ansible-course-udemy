@@ -1,0 +1,16 @@
+---
+-
+    name: Install webserver packages
+    include_tasks: packages.yml
+
+-
+    name: Configure firewalld
+    include_tasks: firewalld.yml
+
+-
+    name: Git clone
+    include_tasks: gitclone.yml
+
+-
+    name: Connect to the database
+    include_tasks: connectdatabase.yml

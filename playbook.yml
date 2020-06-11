@@ -1,0 +1,23 @@
+---
+- 
+      name: Gather Facts (Workaround to use hostvars)
+      hosts:
+            - all
+
+- 
+      name: Install MariaDB on DB Server
+      become: yes
+      become_method: sudo
+      hosts:
+            - dbserver
+      roles:
+            - mariadb
+
+- 
+      name: Install webserver
+      become: yes
+      become_method: sudo
+      hosts:
+            - webserver
+      roles:
+            - webserver
